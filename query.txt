@@ -1,0 +1,405 @@
+//data departemen
+db.departments.insertMany([
+{
+ _id: "dept001",
+ nama_departemen: "Kardiologi",
+ gedung: "Gedung A",
+ lantai: 2
+},
+{
+ _id: "dept002",
+ nama_departemen: "Pediatri",
+ gedung: "Gedung A",
+ lantai: 3
+},
+{
+ _id: "dept003",
+ nama_departemen: "Neurologi",
+ gedung: "Gedung B",
+ lantai: 1
+},
+{
+ _id: "dept004",
+ nama_departemen: "Ortopedi",
+ gedung: "Gedung B",
+ lantai: 2
+}
+])
+
+
+//list doktor
+db.doctors.insertMany([
+{
+ _id: "doc001",
+ nama_dokter: "Dr. Andi Kurniawan",
+ spesialis: "Jantung",
+ department_id: "dept001",
+ no_izin_praktik: "12345",
+ telepon: "08123456789"
+},
+{
+ _id: "doc002",
+ nama_dokter: "Dr. Budi Santoso",
+ spesialis: "Anak",
+ department_id: "dept002",
+ no_izin_praktik: "12346",
+ telepon: "08129876543"
+},
+{
+ _id: "doc003",
+ nama_dokter: "Dr. Citra Dewi",
+ spesialis: "Syaraf",
+ department_id: "dept003",
+ no_izin_praktik: "12347",
+ telepon: "08123451234"
+},
+{
+ _id: "doc004",
+ nama_dokter: "Dr. Eko Prasetyo",
+ spesialis: "Tulang",
+ department_id: "dept004",
+ no_izin_praktik: "12348",
+ telepon: "08123454321"
+}
+])
+db.doctors.
+//nama pasien
+db.patients.insertMany([
+{
+ _id: "pat001",
+ nama_pasien: "Indri Sulastri",
+ nik: "3201012345678901",
+ tanggal_lahir: ISODate("1990-05-15"),
+ jenis_kelamin: "Perempuan",
+ alamat: "Jl. Merdeka No. 10, Jakarta",
+ telepon: "085612345678",
+ asuransi: "BPJS"
+},
+{
+ _id: "pat002",
+ nama_pasien: "Bambang Sutejo",
+ nik: "3201012345678902",
+ tanggal_lahir: ISODate("1985-08-20"),
+ jenis_kelamin: "Laki-laki",
+ alamat: "Jl. Sudirman No. 25, Jakarta",
+ telepon: "085698765432",
+ asuransi: "Swasta"
+},
+{
+ _id: "pat003",
+ nama_pasien: "Dewi Sartika",
+ nik: "3201012345678903",
+ tanggal_lahir: ISODate("2000-01-10"),
+ jenis_kelamin: "Perempuan",
+ alamat: "Jl. Gatot Subroto No. 5, Jakarta",
+ telepon: "08561239876",
+ asuransi: "BPJS"
+},
+{
+ _id: "pat004",
+ nama_pasien: "Agus Salim",
+ nik: "3201012345678904",
+ tanggal_lahir: ISODate("1978-12-01"),
+ jenis_kelamin: "Laki-laki",
+ alamat: "Jl. Thamrin No. 12, Jakarta",
+ telepon: "085677788899",
+ asuransi: "Umum"
+}
+])
+
+//janji temu
+db.appointments.insertMany([
+{
+ _id: "app001",
+ patient_id: "pat001",
+ doctor_id: "doc001",
+ tanggal_waktu: ISODate("2025-03-10T09:00:00"),
+ keluhan: "Nyeri dada",
+ status: "selesai"
+},
+{
+ _id: "app002",
+ patient_id: "pat002",
+ doctor_id: "doc002",
+ tanggal_waktu: ISODate("2025-03-11T10:30:00"),
+ keluhan: "Batuk pilek anak",
+ status: "selesai"
+},
+{
+ _id: "app003",
+ patient_id: "pat003",
+ doctor_id: "doc003",
+ tanggal_waktu: ISODate("2025-03-12T14:00:00"),
+ keluhan: "Sakit kepala berat",
+ status: "dijadwalkan"
+},
+{
+ _id: "app004",
+ patient_id: "pat004",
+ doctor_id: "doc004",
+ tanggal_waktu: ISODate("2025-03-13T11:00:00"),
+ keluhan: "Patah tulang tangan",
+ status: "dijadwalkan"
+},
+{
+ _id: "app005",
+ patient_id: "pat001",
+ doctor_id: "doc001",
+ tanggal_waktu: ISODate("2025-03-20T09:00:00"),
+ keluhan: "Kontrol jantung",
+ status: "dijadwalkan"
+}
+])
+
+//rekam medis
+db.medical_records.insertMany([
+{
+ _id: "rec001",
+ appointment_id: "app001",
+ diagnosis: "Angina pectoris",
+ tindakan: "Pemberian obat dan istirahat",
+ catatan: "Pasien perlu kontrol rutin",
+ tanggal: ISODate("2025-03-10")
+},
+{
+ _id: "rec002",
+ appointment_id: "app002",
+ diagnosis: "ISPA",
+ tindakan: "Resep antibiotik",
+ catatan: "Anak harus banyak minum",
+ tanggal: ISODate("2025-03-11")
+}
+])
+
+//resep data obat
+db.prescriptions.insertMany([
+{
+ _id: "pres001",
+ appointment_id: "app001",
+ obat: "Aspirin",
+ dosis: "1x sehari 80mg",
+ jumlah: 30,
+ keterangan: "Diminum setelah makan"
+},
+{
+ _id: "pres002",
+ appointment_id: "app001",
+ obat: "ISDN",
+ dosis: "2x sehari 5mg",
+ jumlah: 20,
+ keterangan: "Jika nyeri dada"
+},
+{
+ _id: "pres003",
+ appointment_id: "app002",
+ obat: "Amoxicillin",
+ dosis: "3x sehari 250mg",
+ jumlah: 15,
+ keterangan: "Habiskan"
+}
+])
+
+//data kamar
+db.rooms.insertMany([
+{
+ _id: "room101",
+ nomor_kamar: 101,
+ tipe_kamar: "VVIP",
+ harga_per_malam: 1500000,
+ status: "tersedia",
+ patient_id: null
+},
+{
+ _id: "room102",
+ nomor_kamar: 102,
+ tipe_kamar: "VIP",
+ harga_per_malam: 1000000,
+ status: "tersedia",
+ patient_id: null
+},
+{
+ _id: "room201",
+ nomor_kamar: 201,
+ tipe_kamar: "Kelas 1",
+ harga_per_malam: 500000,
+ status: "terisi",
+ patient_id: "pat001"
+},
+{
+ _id: "room202",
+ nomor_kamar: 202,
+ tipe_kamar: "Kelas 2",
+ harga_per_malam: 300000,
+ status: "terisi",
+ patient_id: "pat002"
+}
+])
+
+
+ ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ //A.1
+ db.patients.find({asuransi : "BPJS"})
+ //A.2
+ db.doctors.find({department_id : "dept001"})
+ //A.3
+ db.appointments.find({status : "dijadwalkan", tanggal_waktu : {$gt : ISODate("2025-03-12")}})
+//A.4.A
+db.appointments.find({},{patient_id : 1, keluhan : 1, doctor_id : 1})
+//A.4.B
+db.appointments.aggregate([
+  {
+    $lookup: {
+      from: 'patients',
+      localField: 'patient_id',
+      foreignField: '_id',
+      as: 'patient'
+    }
+  },
+  {
+    $lookup: {
+      from: 'doctors',
+      localField: 'doctor_id',
+      foreignField: '_id',
+      as: 'doctor'
+    }
+  },
+  {$project: {
+    'patient.nama_pasien' : 1,
+    'doctor.nama_dokter' : 1,
+    keluhan : 1,
+    _id : 0
+  }}
+])
+
+//5
+db.prescriptions.find({appointment_id : "app001"})
+
+//6
+db.rooms.find({tipe_kamar: "VIP", status: "tersedia"})  
+
+//7
+db.patients.find({tanggal_lahir : {$lt : ISODate('1990-01-01')}})
+
+//8
+db.doctors.find().sort({nama_dokter : -1})
+
+//9
+db.patients.find({telepon: {$regex : "^0856"}})
+
+//10
+// db.patients.countDocuments({jenis_kelamin : "laki-laki"})
+db.patients.countDocuments({jenis_kelamin : "Laki-laki"})
+
+/////////////////////////////////////////////////
+//B
+
+//11
+db.patients.insertOne({
+ _id : "pat005",
+ nama_pasien: "Joko Wibowo",
+ nik: "3201012345678905",
+ tanggal_lahir: ISODate("1986-06-21"),
+ jenis_kelamin: "Laki-laki",
+ alamat: "Jl. Solo No. 1, Solo",
+ telepon: "085611122233",
+ asuransi: "Swasta"
+})
+
+
+db.patients.insertOne(
+{
+_id:"pat005",
+nama_pasien:"Joko Wibowo",
+nik:"3201012345678905",
+tanggal_lahir:
+ISODate("1986-06-21"),
+jenis_kelamin:"Laki-laki",
+alamat:"Jl. Solo No. 1, Solo",
+telepon:"085611122233",
+asuransi:"Swasta"})
+//12
+db.appointments.insertOne({
+  patient_id : pat005,// ambil id pak joko ya dulu,pat005
+  doctor_id : "doc001",
+  keluhan : "sakit dada",
+  status : "dijadwalkan"
+})
+
+//13
+db.prescriptions.insertOne({
+  appointment_id : "",//ambil id apintment nya pak joko
+  obat : "simvastatin",
+  dosis : "1x sehari 30 kali makan",
+  jumlah : "30",
+  keterangan : "Diminum malam hari"
+})
+
+//14
+db.rooms.updateOne({nomor_kamar : 201}, {$set: {status: "tersedia",  patient_id: null}})
+ 
+  //15 
+  db.patients.updateOne({nama_pasien : "Indri Sulastri"}, {$set : {telepon : '085600001111' }})
+
+  //16
+//   db.medical_records.updateOne({_id : "app003"},{$set : {riwayat_alergi : ["debu", 'udang']}})
+db.patients.updateOne(
+  { nama_pasien: "Dewi Sartika" },
+  { $set: { riwayat_alergi: ["Debu", "udang"] } }
+)
+
+  //17
+  db.appointments.updateOne({_id : "app003"}, {$set : { status: "batal"}})
+
+  //18
+  db.rooms.updateMany(
+    {tipe_kamar: "VIP"},
+    {$mul : {harga_per_malam : 1.1}})
+
+//19
+db.prescriptions.updateOne(
+ {_id: "pres001"},
+ {$set : {keterangan : "Minum setelah makan"}}
+)
+
+//20
+// db.prescriptions.deleteOne({_id : "press002"})
+db.prescriptions.deleteOne({_id : "pres002"})
+// 21
+db.appointments.deleteMany({status : "batal"})
+
+//22
+db.patients.insertOne({
+  nama_pasien: "Test Pasien",
+  nik: "0000000000000000",
+  tanggal_lahir: ISODate("1995-01-01"),
+  jenis_kelamin: "Laki-laki",
+  alamat: "Jl. Dummy No. 1",
+  telepon: "0800000000",
+  asuransi: "Umum"
+})
+
+db.patients.deleteOne({nama_pasien: "Test Pasien"})
+
+//23
+  db.appointments.find({patient_id : 'pat001', status : "selesai"}).sort({tanggal_waktu : -1}).limit(2)
+
+//24
+db.doctors.find({$or : [{spesialis: "Jantung"}, {spesialis: "Syaraf"}]})
+
+//25
+db.prescriptions.updateOne({appointment_id : "app001"}, {$push : {diberikan : false} })
+
+//26
+db.medical_records.deleteMany({ diagnosis: { $regex: "ISPA" } })
+
+//27
+db.rooms.countDocuments({status: "tersedia"})
+
+//28
+db.patients.find({jenis_kelamin: "Perempuan", asuransi: "BPJS"})
+
+//29
+db.doctors.updateMany({department_id: "dept001"}, {$set : {telepon: "021-5550001"}})
+
+//30
+db.appointments.find()
